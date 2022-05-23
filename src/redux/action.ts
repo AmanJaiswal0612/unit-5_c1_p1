@@ -2,6 +2,8 @@
 
 export const ADD_DATA= "ADD_DATA";
 
+export const COUNT_PLUS= "COUNT_PLUS"
+
 type review={
     by:string;
     review:string
@@ -17,12 +19,19 @@ type payProp={
     reviews:review[]
 }
 
-export const addData= (pay:payProp)=>{
+export const addData= (payload:any)=>{
     return{
         type:ADD_DATA,
-        pay,
+        payload,
     }
 
+}
+
+export const countplus=(payload:any)=>{
+    return{
+        type:COUNT_PLUS,
+        payload
+    }
 }
 
 type retadd={
@@ -34,12 +43,11 @@ type addData= ()=>retadd
 
 
 
-export const getdata= () => (dispatch:any) =>{
+export const getdata: ()=>void= () => (dispatch:any) =>{
    
     fetch(`http://localhost:8080/products`)
     .then((res)=>res.json())
     .then((res)=>{
-        
+        console.log(res)
         dispatch(addData(res))})
-    
 }

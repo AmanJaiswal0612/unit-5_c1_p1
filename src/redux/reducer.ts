@@ -1,4 +1,5 @@
-import { ADD_DATA } from "./action";
+import { CardDetails } from "../components/CardDetails";
+import { ADD_DATA, COUNT_PLUS } from "./action";
 
 
 
@@ -18,11 +19,16 @@ type payProp={
 }
 
 type Initailprop={
-    products:payProp[]
+    products:payProp[];
+    count?:number;
+    cart:payProp[]
 }
 
 let initState:Initailprop|any= {
-    products:[]
+    products:[],
+    count:0,
+    cart:[]
+
 }
 
 type Actionprop={
@@ -30,10 +36,15 @@ type Actionprop={
     payload:payProp
 }
 
-const reducer= (state=initState,{type,payload}:Actionprop)=>{
+const reducer= (state=initState,{type,payload}:any)=>{
+    
     switch(type){
         case ADD_DATA:{
+            console.log(payload)
             return{...state,products:payload}
+        }
+        case COUNT_PLUS:{
+            return{...state,count:state.count+1,cart:[...state.cart,...payload]}
         }
         default: return state
     }
