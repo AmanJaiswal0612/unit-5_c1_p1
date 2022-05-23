@@ -37,7 +37,7 @@ function Body() {
   
   useEffect(()=>{
     gdata();
-  })
+  },[])
 
   const dispatch:any= useDispatch();
   const gdata= async ()=>{
